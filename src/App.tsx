@@ -1,7 +1,9 @@
+import PageHeading from "./ui/PageHeading";
+
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline">Poker Home Game</h1>
+    <div className="bg-white p-8">
+      <PageHeading>Poker Home Game</PageHeading>
     </div>
   );
 }
