@@ -46,7 +46,7 @@ function TournamentDetails({ tournament }: Props) {
 
         <Cell title="Average stack">{tournament.averageStack}</Cell>
         <Cell className="col-span-3 row-span-2" title="Remaining time">
-          <div className="flex grow items-center justify-center text-4xl">
+          <div className="flex grow items-center justify-center text-4xl font-bold">
             {paused
               ? "Paused"
               : tournament.nextLevel !== undefined && (
