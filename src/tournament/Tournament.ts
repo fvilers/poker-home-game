@@ -45,7 +45,7 @@ export class Tournament {
   }
 
   get averageStack(): number {
-    return this.totalChips / this.remainingPlayers;
+    return Math.floor(this.totalChips / this.remainingPlayers);
   }
 
   get totalChips(): number {
@@ -61,7 +61,7 @@ export class Tournament {
   }
 
   constructor(
-    public readonly totalPlayers: number,
+    public totalPlayers: number,
     public readonly buyIn: number,
     public readonly levelDuration: number,
     private readonly stack: number,
@@ -71,5 +71,14 @@ export class Tournament {
 
   levelUp() {
     this._currentLevel = Math.min(this._currentLevel + 1, levels.length - 1);
+  }
+
+  bustPlayer() {
+    this._remainingPlayers -= 1;
+  }
+
+  rebuy() {
+    this._remainingPlayers += 1;
+    this.totalPlayers += 1;
   }
 }

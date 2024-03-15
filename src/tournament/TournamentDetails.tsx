@@ -78,12 +78,27 @@ function TournamentDetails({ tournament }: Props) {
         <Cell title="Next ante">{tournament.nextLevel?.ante}</Cell>
       </div>
 
-      <div>
+      <div className="space-x-4">
         {paused ? (
           <Button onClick={() => setPaused(false)}>Resume</Button>
         ) : (
           <Button onClick={() => setPaused(true)}>Pause</Button>
         )}
+        <Button
+          disabled={tournament.remainingPlayers === 1}
+          onClick={() => tournament.bustPlayer()}
+        >
+          Bust
+        </Button>
+        <Button
+          disabled={
+            tournament.remainingPlayers === 1 ||
+            tournament.remainingPlayers === tournament.totalPlayers
+          }
+          onClick={() => tournament.rebuy}
+        >
+          Rebuy
+        </Button>
       </div>
     </div>
   );

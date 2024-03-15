@@ -9,7 +9,7 @@ type Props = PropsWithChildren<{
 function Button({ children, disabled, onClick, type }: Props) {
   return (
     <button
-      className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+      className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 disabled:cursor-not-allowed disabled:text-gray-500 disabled:hover:bg-white"
       disabled={disabled}
       onClick={onClick}
       type={type}

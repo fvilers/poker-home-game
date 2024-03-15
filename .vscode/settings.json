@@ -4,5 +4,5 @@
     "**/node_modules": true,
     "**/package-lock.json": true
   },
-  "cSpell.words": ["tailwindcss"]
+  "cSpell.words": ["rebuy", "tailwindcss"]
 }
