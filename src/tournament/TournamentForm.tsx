@@ -1,7 +1,7 @@
 import { FormEventHandler, useState } from "react";
-import FormProps from "./forms/FormProps";
-import InputGroup from "./forms/InputGroup";
-import Button from "./ui/Button";
+import FormProps from "../forms/FormProps";
+import InputGroup from "../forms/InputGroup";
+import Button from "../ui/Button";
 
 type Props = FormProps<{
   players: number;
