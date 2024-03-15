@@ -1,7 +1,7 @@
 import { FormEventHandler, useState } from "react";
 import FormProps from "../forms/FormProps";
 import InputGroup from "../forms/InputGroup";
-import Button from "../ui/Button";
+import PrimaryButton from "../ui/PrimaryButton";
 
 type Props = FormProps<{
   players: number;
@@ -69,9 +69,9 @@ function TournamentForm({ disabled, onSubmit }: Props) {
         value={stack}
       />
 
-      <Button disabled={disabled} type="submit">
+      <PrimaryButton disabled={disabled} type="submit">
         Start
-      </Button>
+      </PrimaryButton>
     </form>
   );
 }
