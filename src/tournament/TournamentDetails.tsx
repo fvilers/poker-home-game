@@ -12,8 +12,9 @@ type Props = {
 function TournamentDetails({ tournament }: Props) {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [paused, setPaused] = useState(false);
-  const remainingTime =
-    tournament.levelDuration * tournament.currentLevel.level - elapsedTime;
+  const remainingTime = tournament.nextLevel
+    ? tournament.levelDuration * tournament.currentLevel.level - elapsedTime
+    : Infinity;
   const flash = useMemo(
     () => remainingTime < 21 && remainingTime % 2 == 0,
     [remainingTime],
