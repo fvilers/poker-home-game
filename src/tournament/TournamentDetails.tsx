@@ -32,11 +32,11 @@ function TournamentDetails({ tournament }: Props) {
   }, [paused]);
 
   useEffect(() => {
-    if (elapsedTime === tournament.levelDuration) {
+    if (remainingTime === 0) {
       tournament.levelUp();
       pop.current.play();
     }
-  }, [elapsedTime, tournament]);
+  }, [remainingTime, tournament]);
 
   return (
     <div className="space-y-6" aria-live="polite">
