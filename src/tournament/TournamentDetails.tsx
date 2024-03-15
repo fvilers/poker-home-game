@@ -19,7 +19,7 @@ function TournamentDetails({ tournament }: Props) {
     () => remainingTime < 21 && remainingTime % 2 == 0,
     [remainingTime],
   );
-  const pop = useRef(new Audio("/bell.mp3"));
+  const pop = useRef(new Audio("/jingle.mp3"));
 
   useEffect(() => {
     // TODO: implement au interval that can be paused
