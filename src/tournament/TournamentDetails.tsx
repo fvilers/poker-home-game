@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 import Button from "../ui/Button";
 import Cell from "./Cell";
 import Time from "./Time";
@@ -11,6 +12,13 @@ type Props = {
 function TournamentDetails({ tournament }: Props) {
   const [elapsedTime, setElapsedTime] = useState(0);
   const [paused, setPaused] = useState(false);
+  const remainingTime =
+    tournament.levelDuration * tournament.currentLevel.level - elapsedTime;
+  const flash = useMemo(
+    () => remainingTime < 21 && remainingTime % 2 == 0,
+    [remainingTime],
+  );
+  const pop = useRef(new Audio("/bell.mp3"));
 
   useEffect(() => {
     // TODO: implement au interval that can be paused
@@ -26,11 +34,12 @@ function TournamentDetails({ tournament }: Props) {
   useEffect(() => {
     if (elapsedTime === tournament.levelDuration) {
       tournament.levelUp();
+      pop.current.play();
     }
   }, [elapsedTime, tournament]);
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" aria-live="polite">
       <div className="grid grid-cols-5 grid-rows-4 gap-4 text-center">
         <Cell title="Players">
           {tournament.remainingPlayers}/{tournament.totalPlayers}
@@ -45,17 +54,23 @@ function TournamentDetails({ tournament }: Props) {
         </Cell>
 
         <Cell title="Average stack">{tournament.averageStack}</Cell>
-        <Cell className="col-span-3 row-span-2" title="Remaining time">
-          <div className="flex grow items-center justify-center text-4xl font-bold">
+        <Cell
+          className={twMerge(
+            "col-span-3 row-span-2",
+            flash && "ring-4 ring-red-500",
+          )}
+          title="Remaining time"
+        >
+          <div
+            className={twMerge(
+              "flex grow items-center justify-center text-4xl font-bold",
+              flash && "text-red-500",
+            )}
+          >
             {paused
               ? "Paused"
               : tournament.nextLevel !== undefined && (
-                  <Time
-                    seconds={
-                      tournament.levelDuration * tournament.currentLevel.level -
-                      elapsedTime
-                    }
-                  />
+                  <Time seconds={remainingTime} />
                 )}
           </div>
         </Cell>
