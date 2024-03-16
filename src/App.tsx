@@ -21,7 +21,9 @@ function App() {
       {tournament ? (
         <TournamentDetails tournament={tournament} />
       ) : (
-        <TournamentForm onSubmit={handleStart} />
+        <div className="max-w-xl">
+          <TournamentForm onSubmit={handleStart} />
+        </div>
       )}
     </div>
   );
