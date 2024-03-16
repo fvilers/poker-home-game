@@ -65,6 +65,10 @@ export class Tournament {
     return payouts.map((payout) => this.totalPot * payout);
   }
 
+  get rebuyAllowed(): boolean {
+    return this.remainingPlayers > 1 && this.remainingPlayers < this.players;
+  }
+
   constructor(
     public readonly players: number,
     public readonly buyIn: number,

@@ -107,10 +107,7 @@ function TournamentDetails({ tournament }: Props) {
           Bust
         </Button>
         <Button
-          disabled={
-            tournament.remainingPlayers === 1 ||
-            tournament.remainingPlayers === tournament.players
-          }
+          disabled={!tournament.rebuyAllowed}
           onClick={() => tournament.rebuy()}
         >
           Rebuy
