@@ -19,7 +19,7 @@ function TournamentDetails({ tournament }: Props) {
     () => remainingTime < 21 && remainingTime % 2 == 0,
     [remainingTime],
   );
-  const pop = useRef(new Audio("/jingle.mp3"));
+  const jingle = useRef(new Audio("/jingle.mp3"));
 
   useEffect(() => {
     // TODO: implement au interval that can be paused
@@ -35,7 +35,7 @@ function TournamentDetails({ tournament }: Props) {
   useEffect(() => {
     if (remainingTime === 0) {
       tournament.levelUp();
-      pop.current.play();
+      jingle.current.play();
     }
   }, [remainingTime, tournament]);
 
