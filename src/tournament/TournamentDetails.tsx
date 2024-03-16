@@ -43,7 +43,7 @@ function TournamentDetails({ tournament }: Props) {
     <div className="space-y-6" aria-live="polite">
       <div className="grid grid-cols-5 grid-rows-4 gap-4 text-center">
         <Cell title="Players">
-          {tournament.remainingPlayers}/{tournament.totalPlayers}
+          {tournament.remainingPlayers}/{tournament.entries}
         </Cell>
         <Cell title="Level">{tournament.currentLevel.level}</Cell>
         <Cell title="Blind">
@@ -109,7 +109,7 @@ function TournamentDetails({ tournament }: Props) {
         <Button
           disabled={
             tournament.remainingPlayers === 1 ||
-            tournament.remainingPlayers === tournament.totalPlayers
+            tournament.remainingPlayers === tournament.players
           }
           onClick={() => tournament.rebuy()}
         >

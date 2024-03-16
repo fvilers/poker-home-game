@@ -28,6 +28,11 @@ export class Tournament {
   }
   private _remainingPlayers: number;
 
+  get entries(): number {
+    return this._entries;
+  }
+  private _entries: number;
+
   get currentLevel(): NumberedLevel {
     return { ...levels[this._currentLevel], level: this._currentLevel + 1 };
   }
@@ -49,11 +54,11 @@ export class Tournament {
   }
 
   get totalChips(): number {
-    return this.totalPlayers * this.stack;
+    return this.players * this.stack;
   }
 
   get totalPot(): number {
-    return this.totalPlayers * this.buyIn;
+    return this.players * this.buyIn;
   }
 
   get payouts(): number[] {
@@ -61,12 +66,13 @@ export class Tournament {
   }
 
   constructor(
-    public totalPlayers: number,
+    public readonly players: number,
     public readonly buyIn: number,
     public readonly levelDuration: number,
     private readonly stack: number,
   ) {
-    this._remainingPlayers = totalPlayers;
+    this._remainingPlayers = players;
+    this._entries = players;
   }
 
   levelUp() {
@@ -79,6 +85,6 @@ export class Tournament {
 
   rebuy() {
     this._remainingPlayers += 1;
-    this.totalPlayers += 1;
+    this._entries += 1;
   }
 }
