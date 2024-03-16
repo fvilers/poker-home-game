@@ -111,7 +111,7 @@ function TournamentDetails({ tournament }: Props) {
             tournament.remainingPlayers === 1 ||
             tournament.remainingPlayers === tournament.totalPlayers
           }
-          onClick={() => tournament.rebuy}
+          onClick={() => tournament.rebuy()}
         >
           Rebuy
         </Button>
